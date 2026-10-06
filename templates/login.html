@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block titulo %}Login - SuperMotos{% endblock %}
+{% block classe_body %}tela-login{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block rodape %}{% endblock %}
+{% block scripts %}{% endblock %}
+
+{% block conteudo %}
+<div class="card cartao-login">
+  <div class="card-header text-center">
+    <img src="{{ url_for('static', filename='imgs/logo.svg') }}" alt="SuperMotos" height="66">
+  </div>
+
+  <div class="card-body">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form method="post">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail:</label>
+        <input type="email" class="form-control" id="email" name="email"
+               placeholder="Digite seu e-mail" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" class="form-control" id="senha" name="senha"
+               placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Entrar</button>
+    </form>
+
+    <div class="text-center my-3">
+      <a href="#">Recuperar Senha</a>
+    </div>
+
+    <a href="{{ url_for('usuarios_novo') }}" class="btn btn-outline-primary w-100">CADASTRAR</a>
+  </div>
+</div>
+{% endblock %}

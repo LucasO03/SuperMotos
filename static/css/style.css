@@ -1,0 +1,26 @@
+.conteudo {
+  width: 75%;
+  margin: 0 auto;
+}
+
+@media (max-width: 991px) {
+  .conteudo {
+    width: 95%;
+  }
+}
+
+.tela-login {
+  background-color: #e9e8e6;
+}
+
+.tela-login main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cartao-login {
+  width: 100%;
+  max-width: 440px;
+}
