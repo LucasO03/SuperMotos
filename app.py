@@ -5,15 +5,28 @@ from flask import Flask, abort, redirect, render_template, request, url_for
 app = Flask(__name__)
 
 usuarios = [
-    {"id": 1, "nome": "Usuário 1", "email": "user1@example.com",
-     "celular": "1234567890", "nivel": "Usuário"},
-    {"id": 2, "nome": "Usuário 2", "email": "user2@example.com",
-     "celular": "9876543210", "nivel": "Administrador"},
+    {"id": 1, 
+     "nome": "Usuário 1", 
+     "email": "user1@example.com",
+     "celular": "1234567890", 
+     "nivel": "Usuário"},
+    {"id": 2, 
+     "nome": "Usuário 2", 
+     "email": "user2@example.com",
+     "celular": "9876543210", 
+     "nivel": "Administrador"},
 ]
 
 produtos = [
-    {"id": 1, "modelo": "CG 160 Start", "marca": "Honda", "categoria": "Street",
-     "cilindrada": "160", "ano": "2026", "cor": "Vermelha", "preco": 17900.00, "estoque": 5},
+    {"id": 1, 
+     "modelo": "CG 160 Start", 
+     "marca": "Honda", 
+     "categoria": "Street",
+     "cilindrada": "160", 
+     "ano": "2026", 
+     "cor": "Vermelha", 
+     "preco": 17900.00, 
+     "estoque": 5},
     {"id": 2, "modelo": "MT-03", "marca": "Yamaha", "categoria": "Street",
      "cilindrada": "321", "ano": "2026", "cor": "Azul", "preco": 31990.00, "estoque": 2},
     {"id": 3, "modelo": "Biz 125", "marca": "Honda", "categoria": "Scooter",
@@ -66,20 +79,12 @@ def login():
 
 @app.route("/dashboard")
 def dashboard():
-    resumo = {
-        "usuarios": len(usuarios),
-        "produtos": len(produtos),
-        "vendas": len(vendas),
-        "faturamento": sum(v["total"] for v in vendas),
-    }
-
-    ultimas = vendas[-5:][::-1]
-    return render_template("index.html", resumo=resumo, ultimas=ultimas)
+    return render_template("dashboard.html")
 
 
 @app.route("/usuarios")
 def usuarios_listar():
-    return render_template("usuarios.html", usuarios=usuarios)
+    return render_template("usuarios/usuarios.html", usuarios=usuarios)
 
 
 @app.route("/usuarios/novo", methods=["GET", "POST"])
@@ -90,7 +95,7 @@ def usuarios_novo():
         usuarios.append(usuario)
         return redirect(url_for("usuarios_listar"))
     
-    return render_template("usuarios_form.html", titulo="Cadastro de Usuários",
+    return render_template("usuarios/usuarios_form.html", titulo="Cadastro de Usuários",
                            dados={}, niveis=NIVEIS, estados=ESTADOS)
 
 
@@ -100,7 +105,7 @@ def usuarios_editar(id):
     if request.method == "POST":
         usuario.update(request.form.to_dict())
         return redirect(url_for("usuarios_listar"))
-    return render_template("usuarios_form.html", titulo="Edição de Usuário",
+    return render_template("usuarios/usuarios_form.html", titulo="Edição de Usuário",
                            dados=usuario, niveis=NIVEIS, estados=ESTADOS)
 
 
@@ -119,7 +124,7 @@ def ler_produto_do_formulario():
 
 @app.route("/produtos")
 def produtos_listar():
-    return render_template("produtos.html", produtos=produtos)
+    return render_template("produtos/produtos.html", produtos=produtos)
 
 
 @app.route("/produtos/novo", methods=["GET", "POST"])
@@ -130,7 +135,7 @@ def produtos_novo():
         produtos.append(produto)
         return redirect(url_for("produtos_listar"))
     
-    return render_template("produtos_form.html", titulo="Cadastro de Produtos",
+    return render_template("produtos/produtos_form.html", titulo="Cadastro de Produtos",
                            dados={}, categorias=CATEGORIAS)
 
 
@@ -142,7 +147,7 @@ def produtos_editar(id):
         produto.update(ler_produto_do_formulario())
         return redirect(url_for("produtos_listar"))
     
-    return render_template("produtos_form.html", titulo="Edição de Produto",
+    return render_template("produtos/produtos_form.html", titulo="Edição de Produto",
                            dados=produto, categorias=CATEGORIAS)
 
 
@@ -172,7 +177,7 @@ def ler_venda_do_formulario(id_venda):
 
 @app.route("/vendas")
 def vendas_listar():
-    return render_template("vendas.html", vendas=vendas)
+    return render_template("vendas/vendas.html", vendas=vendas)
 
 
 @app.route("/vendas/novo", methods=["GET", "POST"])
@@ -181,7 +186,7 @@ def vendas_novo():
         vendas.append(ler_venda_do_formulario(proximo_id(vendas)))
         return redirect(url_for("vendas_listar"))
     
-    return render_template("vendas_form.html", titulo="Cadastro de Vendas",
+    return render_template("vendas/vendas_form.html", titulo="Cadastro de Vendas",
                            dados={"data": date.today().isoformat()},
                            usuarios=usuarios, produtos=produtos, pagamentos=PAGAMENTOS)
 
@@ -194,7 +199,7 @@ def vendas_editar(id):
         venda.update(ler_venda_do_formulario(id))
         return redirect(url_for("vendas_listar"))
     
-    return render_template("vendas_form.html", titulo="Edição de Venda", dados=venda,
+    return render_template("vendas/vendas_form.html", titulo="Edição de Venda", dados=venda,
                            usuarios=usuarios, produtos=produtos, pagamentos=PAGAMENTOS)
 
 

@@ -1,18 +1,4 @@
-.conteudo {
-  width: 75%;
-  margin: 0 auto;
-}
-
-@media (max-width: 991px) {
-  .conteudo {
-    width: 95%;
-  }
-}
-
-.tela-login {
-  background-color: #e9e8e6;
-}
-
+/* Login: centraliza o card no meio da tela */
 .tela-login main {
   display: flex;
   align-items: center;
