@@ -1,0 +1,30 @@
+{% extends "layout/base_menu.html" %}
+
+{% block titulo %}Cadastro de Perfil - SuperMotos{% endblock %}
+
+{% block conteudo %}
+<div class="container py-4">
+  <h2 class="mb-4">Cadastro de Perfil</h2>
+
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <form class="row g-3">
+
+        <div class="col-12">
+          <label for="nome" class="form-label">Nome do perfil</label>
+          <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-4">
+          <a href="{{ url_for('listar_perfis') }}" class="btn btn-link">Voltar</a>
+          <div>
+            <button type="reset" class="btn btn-outline-secondary">Limpar</button>
+            <button type="button" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

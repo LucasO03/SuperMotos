@@ -1,0 +1,56 @@
+{% extends "layout/base_menu.html" %}
+
+{% block titulo %}Cadastro de Venda - SuperMotos{% endblock %}
+
+{% block conteudo %}
+<div class="container py-4">
+  <h2 class="mb-4">Cadastro de Venda</h2>
+
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <form class="row g-3">
+
+        <div class="col-md-6">
+          <label for="id_cliente" class="form-label">Cliente</label>
+          <select class="form-select" id="id_cliente" name="id_cliente" required>
+            <option value="">Escolha...</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="id_produto" class="form-label">Moto</label>
+          <select class="form-select" id="id_produto" name="id_produto" required>
+            <option value="">Escolha...</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="quantidade" class="form-label">Quantidade</label>
+          <input type="number" min="1" class="form-control" id="quantidade" name="quantidade" value="1" required>
+        </div>
+        <div class="col-md-4">
+          <label for="pagamento" class="form-label">Forma de pagamento</label>
+          <select class="form-select" id="pagamento" name="pagamento" required>
+            <option value="">Escolha...</option>
+            {% for pagamento in ["À vista", "Pix", "Cartão de Crédito", "Financiamento"] %}
+            <option value="{{ pagamento }}">{{ pagamento }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="data_venda" class="form-label">Data da venda</label>
+          <input type="date" class="form-control" id="data_venda" name="data_venda" required>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-4">
+          <a href="{{ url_for('listar_vendas') }}" class="btn btn-link">Voltar</a>
+          <div>
+            <button type="reset" class="btn btn-outline-secondary">Limpar</button>
+            <button type="button" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-body-tertiary {% block classe_body %}{% endblock %}">
+<body class="d-flex flex-column min-vh-100 {% block classe_body %}{% endblock %}">
 
-  <div class="container d-flex align-items-center justify-content-center">
+  <div class="container d-flex flex-grow-1 align-items-center justify-content-center py-4">
   {% block conteudo %}
   {% endblock %}
   </div>

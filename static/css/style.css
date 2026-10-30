@@ -1,12 +1,58 @@
-/* Login: centraliza o card no meio da tela */
-.tela-login main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+/* Tema: preto + azul Yamaha (R: 10, G: 45, B: 130) */
+:root,
+[data-bs-theme="dark"] {
+  --bs-primary: #0a2d82;
+  --bs-primary-rgb: 10, 45, 130;
+  --bs-body-bg: #000;
+  --bs-body-bg-rgb: 0, 0, 0;
 }
 
+.card {
+  --bs-card-bg: #111;
+  --bs-card-border-color: #2b2b2b;
+}
+
+.table {
+  --bs-table-bg: transparent;
+}
+
+/* Cabeçalho das tabelas em azul */
+thead.table-dark {
+  --bs-table-bg: #0a2d82;
+  --bs-table-border-color: #0a2d82;
+}
+
+.btn-primary {
+  --bs-btn-bg: #0a2d82;
+  --bs-btn-border-color: #0a2d82;
+  --bs-btn-hover-bg: #0d3a9e;
+  --bs-btn-hover-border-color: #0d3a9e;
+  --bs-btn-active-bg: #082566;
+  --bs-btn-active-border-color: #082566;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #6ea8fe;
+  --bs-btn-border-color: #0a2d82;
+  --bs-btn-hover-bg: #0a2d82;
+  --bs-btn-hover-border-color: #0a2d82;
+  --bs-btn-active-bg: #0a2d82;
+  --bs-btn-active-border-color: #0a2d82;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3d63c4;
+  box-shadow: 0 0 0 0.25rem rgba(10, 45, 130, 0.5);
+}
+
+/* Login */
 .cartao-login {
   width: 100%;
   max-width: 440px;
+}
+
+/* O logo atual é preto: inverte para aparecer no card escuro (remova ao trocar o logo) */
+.cartao-login img {
+  filter: invert(1);
 }
